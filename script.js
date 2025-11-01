@@ -1,52 +1,20 @@
-// ===== تایپ متن =====
-const texts = ["Front Developer", "Designer", "Web Developer"];
-let count = 0;
-let index = 0;
-let currentText = "";
-let letter = "";
+.menu-toggle {
+    cursor: pointer;
+    font-size: 32px;
+    transition: 0.3s;
+}
 
-(function type() {
-    // اگر آخر لیست بود، دوباره از اول شروع می‌کنه
-    if (count === texts.length) count = 0;
+/* وقتی کلاس close اضافه شد، متن ضربدر نمایش داده شود */
+.menu-toggle.close::after {
+    content: "close";
+}
 
-    currentText = texts[count];
-    letter = currentText.slice(0, ++index);
+/* وقتی کلاس close است، متن اصلی مخفی می‌شود */
+.menu-toggle.close {
+    font-size: 0; /* متن menu مخفی شود */
+}
 
-    document.getElementById("typed-text").textContent = letter;
-
-    if (letter.length === currentText.length) {
-        // صبر قبل از شروع متن بعدی
-        setTimeout(() => {
-            index = 0;
-            count++;
-            type();
-        }, 2000);
-    } else {
-        // سرعت تایپ
-        setTimeout(type, 150);
-    }
-})();
-
-
-// ===== منوی موبایل (sidebar) =====
-const menuToggle = document.querySelector('.menu-toggle');
-const sidebar = document.querySelector('.sidebar');
-
-if(menuToggle && sidebar) {
-    const iconText = menuToggle.querySelector('.icon-text');
-
-    menuToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('active'); // باز/بسته کردن منو
-        // تغییر آیکون بین menu و close
-        iconText.textContent = sidebar.classList.contains('active') ? 'close' : 'menu';
-    });
-
-    // بستن منو وقتی روی یکی از لینک‌ها کلیک شد
-    const sidebarLinks = sidebar.querySelectorAll('a');
-    sidebarLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            sidebar.classList.remove('active');
-            iconText.textContent = 'menu';
-        });
-    });
+.menu-toggle.close::after {
+    font-size: 32px;
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
