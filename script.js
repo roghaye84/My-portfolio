@@ -23,21 +23,24 @@ let letter = "";
     }
 })();
 
-
-// ===== منوی موبایل (sidebar) با ضربدر =====
+// ===== منوی موبایل =====
 const menuToggle = document.querySelector('.menu-toggle');
 const sidebar = document.querySelector('.sidebar');
+const iconText = menuToggle.querySelector('.icon-text');
 
 menuToggle.addEventListener('click', () => {
-    sidebar.classList.toggle('active');    // باز/بسته کردن منو
-    menuToggle.classList.toggle('close');  // تغییر آیکون menu ↔ close
+    sidebar.classList.toggle('active');
+    if (sidebar.classList.contains('active')) {
+        iconText.textContent = "close"; // ضربدر
+    } else {
+        iconText.textContent = "menu";  // آیکون منو
+    }
 });
 
 // بستن منو وقتی روی لینک کلیک شد
-const sidebarLinks = sidebar.querySelectorAll('a');
-sidebarLinks.forEach(link => {
+sidebar.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
-        sidebar.classList.remove('active'); 
-        menuToggle.classList.remove('close'); 
+        sidebar.classList.remove('active');
+        iconText.textContent = "menu";
     });
 });
