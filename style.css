@@ -55,22 +55,41 @@ ul {
     gap: 25px;
 }
 
-.main-menu li a {
-    text-decoration: none;
-    color: #000;
-    font-weight: 500;
-    transition: color 0.3s ease;
+/* منوی موبایل (sidebar) */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -260px; /* مخفی پیشفرض */
+    height: 100vh;
+    width: 250px;
+    background: #DEEBF8;
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+    transition: right 0.3s ease;
+    z-index: 1000;
 }
 
-.main-menu li a:hover {
-    color: #3898f9;
+/* فقط روی موبایل sidebar نمایش داده شود */
+@media (max-width: 768px) {
+    .main-menu {
+        display: none; /* مخفی کردن منوی دسکتاپ */
+    }
+
+    .menu-toggle {
+        display: block; /* نمایش آیکون منو موبایل */
+    }
 }
 
-/* آیکون منو موبایل */
-.menu-toggle {
-    cursor: pointer;
-    font-size: 32px;
-    transition: 0.3s;
+/* روی صفحه بزرگ (دسکتاپ) sidebar مخفی باشد */
+@media (min-width: 769px) {
+    .sidebar {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: none;
+    }
 }
 
 /* وقتی کلاس close اضافه شد، متن ضربدر نمایش داده شود */
