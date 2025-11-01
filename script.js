@@ -1,20 +1,11 @@
-.menu-toggle {
-    cursor: pointer;
-    font-size: 32px;
-    transition: 0.3s;
-}
+const menuToggle = document.querySelector('.menu-toggle');
+const sidebar = document.querySelector('.sidebar');
 
-/* وقتی کلاس close اضافه شد، متن ضربدر نمایش داده شود */
-.menu-toggle.close::after {
-    content: "close";
-}
+if(menuToggle && sidebar) {  // بررسی می‌کنه المان‌ها وجود دارن
+  const iconText = menuToggle.querySelector('.icon-text');
 
-/* وقتی کلاس close است، متن اصلی مخفی می‌شود */
-.menu-toggle.close {
-    font-size: 0; /* متن menu مخفی شود */
-}
-
-.menu-toggle.close::after {
-    font-size: 32px;
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  menuToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('active');
+    iconText.textContent = sidebar.classList.contains('active') ? 'close' : 'menu';
+  });
 }
