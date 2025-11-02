@@ -5,22 +5,102 @@
     box-sizing: border-box;
 }
 
+/* ===== body برای صفحه اصلی ===== */
 body {
     font-family: 'Poppins', sans-serif;
     min-height: 100vh;
     background: #f5f7fa;
+    overflow-x: hidden;
 }
 
-/* آیکون‌های گوگل */
+/* ===== لودینگ اسکرین (فقط اینجا استایل لودینگ باشه) ===== */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #9DBCDA;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.8s ease-out;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+.laptop-icon .sci {
+    font-size: 5rem;
+    color: white;
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s forwards;
+    animation-delay: 0.3s;
+}
+
+.profile-title {
+    font-size: 2.2rem;
+    margin-top: 1rem;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 900;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s forwards;
+    animation-delay: 0.8s;
+}
+
+.social-icons {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s forwards;
+    animation-delay: 1.3s;
+}
+
+.social-icons .sci {
+    color: white;
+    font-size: 2.2rem;
+    text-decoration: none;
+}
+
+.design-title {
+    font-size: 1.4rem;
+    margin-top: 1rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s forwards;
+    animation-delay: 1.8s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== محتوای اصلی (پس از لودینگ) ===== */
+#main-content {
+    display: none; /* پیش‌فرض مخفی */
+}
+
+#main-content.show {
+    display: block;
+}
+
+/* --- بقیه استایل‌های پورتفولیو --- */
+/* (همون چیزی که تو نوشتی، بدون تغییر) */
+
 .material-symbols-outlined {
-    font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 24;
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
-/* ===== ناوبری ===== */
 nav {
     background: #ECF2F9;
     display: flex;
@@ -33,7 +113,6 @@ nav {
     z-index: 999;
 }
 
-/* لوگو */
 .logo {
     font-family: 'Rajdhani', sans-serif;
     font-weight: 900;
@@ -42,14 +121,12 @@ nav {
     color: #000;
 }
 
-/* حذف bullet برای منوها */
 ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-/* منوی دسکتاپ */
 .main-menu {
     display: flex;
     gap: 25px;
@@ -66,19 +143,16 @@ ul {
     color: #3898f9;
 }
 
-/* آیکون منو موبایل */
 .menu-toggle {
-    display: none; /* فقط روی موبایل فعال می‌شود */
+    display: none;
     font-size: 32px;
     cursor: pointer;
-    transition: transform 0.3s ease;
 }
 
-/* منوی کناری موبایل */
 .sidebar {
     position: fixed;
     top: 0;
-    right: -260px; /* مخفی در حالت پیشفرض */
+    right: -260px;
     height: 100vh;
     width: 250px;
     background: #DEEBF8;
@@ -90,7 +164,7 @@ ul {
 }
 
 .sidebar.active {
-    right: 0; /* نمایش وقتی فعال است */
+    right: 0;
 }
 
 .sidebar li a {
@@ -112,18 +186,16 @@ ul {
     color: #fff;
 }
 
-/* ===== Home Section ===== */
 .home {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 100vh;
+    height: calc(100vh - 60px);
     padding: 60px 9%;
     flex-wrap: wrap;
     background: #ECF2F9;
 }
 
-/* متن‌ها */
 .home-info {
     max-width: 60%;
 }
@@ -144,7 +216,6 @@ ul {
     white-space: nowrap;
     overflow: hidden;
     vertical-align: bottom;
-
     color: transparent;
     -webkit-text-stroke: 2px #70b1f3;
     font-weight: 700;
@@ -152,14 +223,11 @@ ul {
     border-right: 2px solid #9DBCDA;
 }
 
-/* پاراگراف */
 .home-info p {
     font-size: 16px;
     margin: 10px 0 25px;
     color: #000;
 }
-
-/* دکمه‌ها و آیکون‌ها */
 .btn-sci {
     display: flex;
     align-items: center;
@@ -206,7 +274,6 @@ ul {
     box-shadow: 0 0 10px #9DBCDA;
 }
 
-/* تصویر */
 .home-img {
     flex-shrink: 0;
     width: 400px;
@@ -224,8 +291,8 @@ ul {
     display: block;
 }
 
-/* ===== ریسپانسیو ===== */
-@media (max-width: 900px){
+/* ریسپانسیو */
+@media (max-width: 900px) {
     .home {
         flex-direction: column;
         justify-content: center;
@@ -233,11 +300,10 @@ ul {
         padding: 30px 5%;
         height: auto;
     }
-.home-info {
+    .home-info {
         max-width: 100%;
         text-align: center;
     }
-
     .home-img {
         margin-left: 0;
         margin-top: 30px;
@@ -250,15 +316,12 @@ ul {
     .main-menu {
         display: none;
     }
-
     .menu-toggle {
         display: block;
     }
-
     nav {
         padding: 10px 15px;
     }
-
     .sidebar li a {
         font-size: 18px;
         padding: 12px 20px;
@@ -270,24 +333,19 @@ ul {
         width: 200px;
         height: 200px;
     }
-
     .home-info h1 {
         font-size: 32px;
     }
-
     .home-info h2 {
         font-size: 24px;
     }
-
     #typed-text {
         font-size: 24px;
     }
-
     .btn {
         padding: 8px 20px;
         font-size: 14px;
     }
-
     .btn-sci .sci {
         width: 35px;
         height: 35px;
