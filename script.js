@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// ===== 2. تایپینگ متن (Typed Text Animation) =====
+// ===== 2. تایپینگ متن (Typed Text) =====
 (function typeText() {
     const texts = ["Front-End Developer", "Web Designer", "UI Enthusiast"];
     let count = 0;
@@ -51,24 +51,30 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // شروع تایپینگ فقط اگر عنصر وجود داشت
     const typedElement = document.getElementById("typed-text");
     if (typedElement) {
         setTimeout(type, 500);
     }
 })();
 
-// ===== 3. منوی موبایل (Sidebar Toggle با آیکون menu/close) =====
+// ===== 3. منوی موبایل با Font Awesome (fa-bars / fa-xmark) =====
 document.addEventListener('DOMContentLoaded', function () {
     const menuToggle = document.querySelector('.menu-toggle');
     const sidebar = document.querySelector('.sidebar');
+    const icon = menuToggle ? menuToggle.querySelector('i') : null;
 
-    if (menuToggle && sidebar) {
-        // باز/بسته کردن منو با کلیک روی آیکون
-        menuToggle.addEventListener('click', function () {
+    if (menuToggle && sidebar && icon) {
+        // جلوگیری از رفتار پیش‌فرض لینک
+        menuToggle.addEventListener('click', function (e) {
+            e.preventDefault();
             sidebar.classList.toggle('active');
-            // تغییر آیکون بین "menu" و "close"
-            this.textContent = sidebar.classList.contains('active') ? 'close' : 'menu';
+
+            // تغییر آیکون بین bars (☰) و xmark (×)
+            if (sidebar.classList.contains('active')) {
+                icon.className = 'fa-solid fa-xmark';
+            } else {
+                icon.className = 'fa-solid fa-bars';
+            }
         });
 
         // بستن منو با کلیک روی هر لینک
@@ -76,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
         sidebarLinks.forEach(link => {
             link.addEventListener('click', function () {
                 sidebar.classList.remove('active');
-                menuToggle.textContent = 'menu';
+                icon.className = 'fa-solid fa-bars';
             });
         });
     }
